@@ -1,56 +1,36 @@
-// Recupera os alunos do LocalStorage
-let alunos = JSON.parse(localStorage.getItem('alunos')) || [];
-
-// Função para salvar os dados no LocalStorage
-function salvarDados() {
-    localStorage.setItem('alunos', JSON.stringify(alunos));
-}
-
-// Função para cadastrar um aluno
 function cadastrarAluno() {
     const nome = document.getElementById('nomeAluno').value.trim();
     const matricula = document.getElementById('matriculaAluno').value.trim();
+    const codigoSala = matricula.substring(0, 2); // Define a sala pela matrícula
+    const sala = salas[codigoSala] || "Sala Desconhecida";
 
     if (nome && matricula.length >= 2) {
-        const codigoSala = matricula.substring(0, 2); // Pega os dois primeiros números
-        const sala = salas[codigoSala] || "Sala Desconhecida"; // Associa a sala ou define como desconhecida
-
-        const ultimosQuatro = matricula.slice(-4);
-
-        // Verificando se já existe uma matrícula com os mesmos últimos 4 dígitos
-        const repetido = alunos.some(aluno => aluno.matricula.slice(-4) === ultimosQuatro);
-
-        if (repetido) {
-            alert("Os quatro últimos dígitos da matrícula já estão em uso. Escolha outra matrícula.");
-            return;
-        }
-
-        const alunoExiste = alunos.some(aluno => aluno.matricula === matricula);
-        if (alunoExiste) {
-            alert("Aluno já cadastrado com esta matrícula!");
-            return;
-        }
-
-        const aluno = {
+        db.collection("alunos").add({
             nome: nome,
             matricula: matricula,
-            sala: sala,
-            presencas: {}
-        };
-
-        alunos.push(aluno);
-        document.getElementById('nomeAluno').value = '';
-        document.getElementById('matriculaAluno').value = '';
-
-        alert(`Aluno cadastrado com sucesso na ${sala}!`);
-
-        salvarDados();
-        atualizarListaAlunos();
-        atualizarSelectAlunos();
+            sala: sala
+        }).then(() => {
+            alert(`Aluno cadastrado na ${sala}!`);
+            carregarAlunos(); // Atualiza a lista
+        }).catch(error => {
+            console.error("Erro ao salvar: ", error);
+        });
     } else {
-        alert("Por favor, preencha todos os campos corretamente. A matrícula deve ter pelo menos dois números.");
+        alert("Preencha todos os campos corretamente.");
     }
 }
+
+function carregarAlunos() {
+    db.collection("alunos").get().then(snapshot => {
+        alunos = [];
+        snapshot.forEach(doc => {
+            alunos.push(doc.data());
+        });
+        atualizarListaAlunos();
+        atualizarSelectAlunos();
+    });
+}
+
 
 
 const salas = {
@@ -160,8 +140,6 @@ function registrarPresenca() {
     alunos[alunoIndex].presencas[data] = parseInt(presenca);
 
     alert("Presença registrada com sucesso!");
-
-    salvarDados(); // Atualiza os dados no LocalStorage
 }
 
 // Função para contar o número de presentes e ausentes
@@ -240,10 +218,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
-
-// Carrega os dados iniciais ao abrir a página
-window.onload = function () {
-    atualizarListaAlunos();
-    atualizarSelectAlunos();
-};
