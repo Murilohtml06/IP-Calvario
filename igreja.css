@@ -1,0 +1,203 @@
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Set the base font size and family */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 2;
+    background-image: linear-gradient(to right, #56A531, #157F35);
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2.5rem;
+}
+
+.senha {
+    height: 100%;
+    width: 100%;
+    color: #4cd137;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #2f3640;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+    .senha {
+        height: 109vh;
+    }
+
+}
+
+.box {
+    width: 25px;
+    height: 25px;
+    margin: 8px 3px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #ecf0f1;
+    border-radius: 5px;
+    text-align: center;
+    color: #4cd137;
+    background: transparent;
+}
+
+.transicao {
+    display: block;
+    border-radius: 6px;
+    margin-top: 4px;
+    padding-left: 14px;
+}
+
+input, select, button {
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+.form-container button, .presenca-container button, .contagem-container button {
+    display: block; /* Faz o botão ocupar toda a largura do container */
+    margin: 10px auto; /* Centraliza horizontalmente */
+}
+
+.contagem-container p {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#senha {
+    width: 80px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 2px solid #4cd137;
+    color: #4cd137;
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    transition: 0.4s ease-in;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: #4cd137;
+        color: #2f3640;
+    }
+}
+
+.modal {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    /* Garante que fique sobre tudo */
+
+}
+
+#cadastro:hover {
+    background-color: green;
+    color: white;
+}
+
+.sala {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sala h3 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sala ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sala li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+button.remover {
+    margin-left: 8px;
+}
+
+button.remover:hover {
+    background-color: red;
+    color: white;
+}
+
+.list-container {
+    max-height: 300px;
+    /* Altura máxima da lista */
+    overflow-y: auto;
+    /* Adiciona rolagem vertical quando necessário */
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Adicionando uma barra de rolagem personalizada */
+.list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background-color: #4cd137;
+    border-radius: 4px;
+}
+
+.list-container::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+
+#quantidadeSalas p {
+    text-align: center;
+}

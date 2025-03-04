@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Presença</title>
+    <link rel="stylesheet" href="igreja.css">
+    <link rel="icon" href="https://ipcalvario.org.br/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="modalSenha" class="modal">
+        <div class="senha">
+            <img src="logo-igreja.webp" width="250px" alt="">
+            <h3>Verificação</h3>
+            <div>
+                <input class="box" type="text" maxlength="1" required>
+                <input class="box" type="text" maxlength="1" required>
+                <input class="box" type="text" maxlength="1" required>
+                <input class="box" type="text" maxlength="1" required>
+            </div>
+            <button id="senha">Verificar</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Gerenciamento de Lista de Presença</h1>
+
+        <!-- Formulário para cadastrar alunos -->
+        <div class="form-container">
+            <h2>Cadastrar Aluno</h2>
+            <input class="transicao" type="text" id="nomeAluno" placeholder="Nome do Aluno" required>
+            <input class="transicao" type="number" id="matriculaAluno" placeholder="Matrícula do Aluno"
+                list="sugestoesSalas" required>
+            <!-- Datalist com os códigos das salas -->
+            <datalist id="sugestoesSalas">
+                <option value="10">Sala 1</option>
+                <option value="20">Sala 2</option>
+                <option value="30">Sala 3</option>
+                <option value="40">Sala 4</option>
+                <option value="50">Sala 5</option>
+                <option value="60">Sala 6</option>
+                <option value="70">Sala 7</option>
+                <option value="80">Sala 8</option>
+            </datalist>
+            <button onclick="cadastrarAluno()" id="cadastro">Cadastrar Aluno</button>
+        </div>
+
+        <!-- Lista de alunos cadastrados -->
+        <div class="list-container">
+            <h2>Lista de Alunos por Sala</h2>
+            <div id="quantidadeSalas"></div>
+            <div id="salasContainer"></div>
+        </div>
+
+        <!-- Formulário para registrar presença -->
+        <div class="presenca-container">
+            <h2>Registrar Presença</h2>
+            <select id="alunosSelect">
+                <option value="">Selecione um aluno</option>
+            </select>
+            <input type="date" id="dataPresenca" required>
+            <select id="statusPresenca">
+                <option value="1">Presente</option>
+                <option value="0">Ausente</option>
+            </select>
+            <button onclick="registrarPresenca()">Registrar</button>
+        </div>
+
+        <!-- Contagem de presentes e ausentes -->
+        <div class="contagem-container">
+            <h2>Contagem de Presenças</h2>
+            <button onclick="contarPresencas()">Contar Presenças</button>
+            <p id="contagemResultados"></p>
+        </div>
+    </div>
+
+    <script src="igreja.js"></script>
+</body>
+
+</html>
