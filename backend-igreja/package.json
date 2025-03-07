@@ -1,0 +1,19 @@
+{
+  "name": "backend-igreja",
+  "version": "1.0.0",
+  "description": "Backend do sistema de gerenciamento de presença da igreja",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongodb": "^6.14.2",
+    "mongoose": "^8.12.1"
+  }
+}
