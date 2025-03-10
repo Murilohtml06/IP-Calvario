@@ -1,4 +1,4 @@
-const apiUrl = "http://192.168.0.13:4000"; // Certifique-se de que esta URL está correta
+const apiUrl = "https://ip-calvario-production.up.railway.app:4000"; // Certifique-se de que esta URL está correta
 
 // Função para cadastrar um aluno
 async function cadastrarAluno() {
